@@ -74,6 +74,11 @@ int main()
         scanf("%d", &territorios[totalTerritorios].tropas);
         limparBufferEntrada();
 
+        // Remove o caractere '\n' deixado pelo fgets (caso exista) substituindo-o por '\0',
+        // garantindo que a string não tenha uma quebra de linha extra ao ser exibida.
+        territorios[totalTerritorios].nome[strcspn(territorios[totalTerritorios].nome, "\n")] = '\0';
+        territorios[totalTerritorios].cor[strcspn(territorios[totalTerritorios].cor, "\n")] = '\0';
+
         printf("\n\n");
     }
 
@@ -89,10 +94,11 @@ int main()
     // Apresenta de forma organizada todos os dados coletados anteriormente
     for (int totalTerritorios = 0; totalTerritorios < MAX_TERRITORIOS; totalTerritorios++)
     {
-        printf("%dº Território:\n\n", totalTerritorios + 1);
-        printf("- Nome: %s", territorios[totalTerritorios].nome);
-        printf("- Cor: %s", territorios[totalTerritorios].cor);
-        printf("- Tropas: %d", territorios[totalTerritorios].tropas);
+        printf("--- %dº Território ---\n\n", totalTerritorios + 1);
+        printf("- Nome: %s\n", territorios[totalTerritorios].nome);
+        printf("- Cor: %s\n", territorios[totalTerritorios].cor);
+        printf("- Tropas: %d\n\n", territorios[totalTerritorios].tropas);
+        printf("----------------------\n\n");
     }
 
     // Retorna 0 indicando que o programa foi executado com sucesso
